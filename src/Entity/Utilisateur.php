@@ -28,7 +28,7 @@ class Utilisateur
     private $prenom;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $date_de_naiss;
 
