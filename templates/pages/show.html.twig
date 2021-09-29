@@ -1,0 +1,42 @@
+{% extends "base.html.twig" %}
+{% block body %}
+   {{  include("pages/menu.html.twig") }}
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Full name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">phone</th>
+                    <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                        <th scope="row">{{user.id}}</th>
+                        <td>{{user.fullName}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.phone}}</td>
+                        <td>
+                            <div class="row"> 
+                                <div class="col-md-4 ml-1">
+                                    <a name="" id="" class="btn btn-info" href="#" role="button">Edit</a>
+                                </div>
+                               
+                                <div class="col-md-4 ml-1">
+                                    <a name="" id="" class="btn btn-danger" href="#" role="button">Delete</a>
+                                </div>
+                            </div>
+                        </td>
+                        </tr>
+                        <tr>
+                </tbody>
+                </table>
+        
+        </div>
+    </div>
+
+       
+ {% endblock %}
