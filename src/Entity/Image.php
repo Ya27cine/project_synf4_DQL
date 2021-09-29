@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\EpisodeRepository;
+use App\Repository\ImageRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=EpisodeRepository::class)
+ * @ORM\Entity(repositoryClass=ImageRepository::class)
  */
-class Episode
+class Image
 {
     /**
      * @ORM\Id
@@ -18,23 +18,23 @@ class Episode
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=120)
+     * @ORM\Column(type="string", length=255)
      */
-    private $titre;
+    private $rl;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitre(): ?string
+    public function getRl(): ?string
     {
-        return $this->titre;
+        return $this->rl;
     }
 
-    public function setTitre(string $titre): self
+    public function setRl(string $rl): self
     {
-        $this->titre = $titre;
+        $this->rl = $rl;
 
         return $this;
     }

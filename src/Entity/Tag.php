@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\EmissionRepository;
+use App\Repository\TagRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=EmissionRepository::class)
+ * @ORM\Entity(repositoryClass=TagRepository::class)
  */
-class Emission
+class Tag
 {
     /**
      * @ORM\Id
@@ -20,21 +20,21 @@ class Emission
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $titre;
+    private $name;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitre(): ?string
+    public function getName(): ?string
     {
-        return $this->titre;
+        return $this->name;
     }
 
-    public function setTitre(string $titre): self
+    public function setName(string $name): self
     {
-        $this->titre = $titre;
+        $this->name = $name;
 
         return $this;
     }

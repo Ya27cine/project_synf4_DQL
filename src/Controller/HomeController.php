@@ -27,9 +27,10 @@ class HomeController extends AbstractController
          * */
         function index() : Response
         {
+            //TODO
 
             return $this->render('pages/home.html.twig',[
-                'title' => 'page test DQl',
+                'title' => 'Page test DQl',
                 'm_date' => '2021-02-26'
             ]);
         }
