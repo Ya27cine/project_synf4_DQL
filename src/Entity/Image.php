@@ -20,7 +20,7 @@ class Image
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $rl;
+    private $url;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="images")
@@ -34,18 +34,6 @@ class Image
         return $this->id;
     }
 
-    public function getRl(): ?string
-    {
-        return $this->rl;
-    }
-
-    public function setRl(string $rl): self
-    {
-        $this->rl = $rl;
-
-        return $this;
-    }
-
     public function getPost(): ?Post
     {
         return $this->post;
@@ -54,6 +42,18 @@ class Image
     public function setPost(?Post $post): self
     {
         $this->post = $post;
+
+        return $this;
+    }
+
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    public function setUrl(string $url): self
+    {
+        $this->url = $url;
 
         return $this;
     }
