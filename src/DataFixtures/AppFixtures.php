@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Comment;
+use App\Entity\Image;
 use App\Entity\Post;
 use App\Entity\Tag;
 use App\Entity\User;
@@ -25,14 +26,21 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $this->faker = Factory::create('fr_FR');
-        $this->addUser($manager);
-        // $product = new Product();
-        // $manager->persist($product);
-        //$manager->flush();
+
+        $this->creatUsers($manager);
+
+        $this->createPosts($manager);
+
+        $this->creatComments($manager);
+
+        $this->creatTags($manager);
+
+        $this->creatImages($manager);
+
     }
 
     // Gene User
-    public function addUser(ObjectManager $manager){
+    public function creatUsers(ObjectManager $manager){
 
         for($i=0; $i < self::LIMIT_ROWS; $i++) {
             $user = new User();
@@ -86,14 +94,33 @@ class AppFixtures extends Fixture
         $manager->flush();
     }
 
-    // GenePost
+    // Gene tags
     public function creatTags(ObjectManager $manager){
 
         for($i=0; $i < self::LIMIT_ROWS; $i++) {
-            $comment = new Tag();
-           
-           
-            $manager->persist($comment);
+            $tag = new Tag();
+            $tag->setName( $this->faker->jobTitle);
+
+            $post = $this->getReference($i.'_post');
+            $tag->addPost( $post );
+
+            $manager->persist($tag);
+        }
+        $manager->flush();
+    }
+
+    // Gene images
+    public function creatImages(ObjectManager $manager){
+
+        for($i=0; $i < self::LIMIT_ROWS; $i++) {
+            $img = new Image();
+            $img->setUrl($this->faker->imageUrl($width = 640, $height = 480));
+
+            $post = $this->getReference($i.'_post');
+            $img->setPost($post);
+          
+
+            $manager->persist($img);
         }
         $manager->flush();
     }
