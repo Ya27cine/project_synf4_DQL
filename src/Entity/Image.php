@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ImageRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,27 +25,18 @@ class Image
     private $url;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="images")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Post", inversedBy="images")
      */
-    private $post;
+    private $posts;
 
-    
+    public function __construct()
+    {
+        $this->posts = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getPost(): ?Post
-    {
-        return $this->post;
-    }
-
-    public function setPost(?Post $post): self
-    {
-        $this->post = $post;
-
-        return $this;
     }
 
     public function getUrl(): ?string
@@ -57,5 +50,33 @@ class Image
 
         return $this;
     }
+
+    /**
+     * @return Collection|Post[]
+     */
+    public function getPosts(): Collection
+    {
+        return $this->posts;
+    }
+
+    public function addPost(Post $post): self
+    {
+        if (!$this->posts->contains($post)) {
+            $this->posts[] = $post;
+        }
+
+        return $this;
+    }
+
+    public function removePost(Post $post): self
+    {
+        $this->posts->removeElement($post);
+
+        return $this;
+    }
+
+   
+
+
 
 }

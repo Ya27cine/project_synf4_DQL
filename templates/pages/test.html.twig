@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+{% block body %}
+   {{  include("pages/menu.html.twig") }}
+   <ul>
+    {% for i in imgs   %}
+        <li> {{ i.getTitle }} </li>
+
+    {% endfor %}
+  </ul>
+
+
+ {% endblock %}

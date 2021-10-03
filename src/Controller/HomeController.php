@@ -2,13 +2,18 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Post;
+
+use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Proxies\__CG__\App\Entity\Image;
 
 class HomeController extends AbstractController
 {
+
     const _array =[
             ["id"=>1, "name"=>"hello"],
             ["id"=>2, "name"=>"wrold"]
@@ -24,9 +29,6 @@ class HomeController extends AbstractController
             "<p> Hello world ! u have : " . $num . " </p>"
         );
     }
-
-
-
 
 
         /**
@@ -48,7 +50,7 @@ class HomeController extends AbstractController
          * */
         function showOneUser($id) : Response
         {
-            $repo = $this->getDoctrine()->getRepository(User::class);
+            $repo = $this->getDoctrine()->getRepository(Post::class);
             $user = $repo->find($id);
 
             return $this->render('pages/show.html.twig',[
@@ -58,7 +60,23 @@ class HomeController extends AbstractController
             ]);
         }
 
-        
+
+        /**
+         * @Route("/prostam", name="test")
+         * */
+        function craeteImgPost(): Response
+        {
+            $repo = $this->getDoctrine()->getRepository(Image::class);
+            $data = $repo->findAll();
+
+            $post  = $data[2]->getPosts();
+
+            return $this->render('pages/test.html.twig',[
+                'title' => 'Page test DQl',
+                'm_date' => '2021-02-26',
+                'imgs' =>  $post
+            ]);
+        }
 
 }
 ?>

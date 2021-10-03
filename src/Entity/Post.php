@@ -50,7 +50,7 @@ class Post
     private $tags;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="post")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Image", mappedBy="post")
      */
     private $images;
 
