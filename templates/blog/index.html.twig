@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ title }}!{% endblock %}
+
+
+{% block body %}
+{{  include("menu/menu.html.twig") }}
+
+    <h1 class="">Page index :: Blog</h1>
+
+<div class="row">
+    {% for post in data %}
+        <div class="col-md-5 my-2 mx-3">  
+           <h4> <a href=" {{ path('blog-show',{'id': post.id})}}"> {{ post.title}}</a></h4> 
+           <p> {{ post.content | slice(0, 77)}}...</p>
+           <div class="text-end">
+                 <span class="badge bg-warning text-dark">{{ post.published | date("m/d/Y")}}</span>
+            </div>
+        </div>
+     {% endfor %}
+
+{% endblock %}
